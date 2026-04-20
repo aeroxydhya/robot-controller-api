@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     environment {
+        IMAGE_NAME = "robot-api"
+        CONTAINER_NAME = "robot-container"
         SONAR_PROJECT_KEY = "aeroxydhya_robot-controller-api"
         SONAR_ORG = "aeroxydhya"
-        SONAR_TOKEN = "d51b4b52350e8dbee8f20c9e15f004081bc4e98c"
     }
 
     stages {
@@ -31,19 +32,23 @@ pipeline {
             steps {
                 dir('D:/hp laptop aradhya data/c#/SIT_331/4.3d/robot-controller-api') {
 
-                    bat """
-                    C:\\WINDOWS\\system32\\config\\systemprofile\\.dotnet\\tools\\dotnet-sonarscanner begin ^
-                    /k:"%SONAR_PROJECT_KEY%" ^
-                    /o:"%SONAR_ORG%" ^
-                    /d:sonar.token="%SONAR_TOKEN%"
-                    """
+                    withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
 
-                    bat 'dotnet build robot-controller-api.sln'
+                        bat """
+                        C:\\WINDOWS\\system32\\config\\systemprofile\\.dotnet\\tools\\dotnet-sonarscanner begin ^
+                        /k:"%SONAR_PROJECT_KEY%" ^
+                        /o:"%SONAR_ORG%" ^
+                        /d:sonar.token="%SONAR_TOKEN%" ^
+                        /d:sonar.scanner.skipJreProvisioning=true
+                        """
 
-                    bat """
-                    C:\\WINDOWS\\system32\\config\\systemprofile\\.dotnet\\tools\\dotnet-sonarscanner end ^
-                    /d:sonar.token="%SONAR_TOKEN%"
-                    """
+                        bat 'dotnet build robot-controller-api.sln'
+
+                        bat """
+                        C:\\WINDOWS\\system32\\config\\systemprofile\\.dotnet\\tools\\dotnet-sonarscanner end ^
+                        /d:sonar.token="%SONAR_TOKEN%"
+                        """
+                    }
                 }
             }
         }
@@ -69,7 +74,7 @@ pipeline {
 
         stage('Monitoring') {
             steps {
-                echo 'Monitoring active - logs enabled'
+                bat 'docker logs robot-container'
             }
         }
     }
