@@ -2906,7 +2906,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\WINDOWS\\system32\\config\\systemprofile\\.nuget\\packages\\": {}
+    "C:\\Users\\hp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -2914,11 +2914,11 @@
       "projectUniqueName": "D:\\hp laptop aradhya data\\c#\\SIT_331\\4.3d\\robot-controller-api\\robot-controller-api.csproj",
       "projectName": "robot-controller-api",
       "projectPath": "D:\\hp laptop aradhya data\\c#\\SIT_331\\4.3d\\robot-controller-api\\robot-controller-api.csproj",
-      "packagesPath": "C:\\WINDOWS\\system32\\config\\systemprofile\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
       "outputPath": "D:\\hp laptop aradhya data\\c#\\SIT_331\\4.3d\\robot-controller-api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
